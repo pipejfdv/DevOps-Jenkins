@@ -5,7 +5,7 @@ package com.uninpahu.devops;
  * Su unico proposito es tener logica sencilla para validar con pruebas
  * unitarias dentro del pipeline de Jenkins.
  */
-public class Calculadora {
+public class Calculadora 
 
     public int sumar(int a, int b) {
         return a + b;
