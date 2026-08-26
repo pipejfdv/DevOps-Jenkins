@@ -1,0 +1,24 @@
+version: "3.8"
+
+# Laboratorio DevOps - UNINPAHU - Semanas 1 y 2
+# Levanta un servidor Jenkins standalone (independiente de GitLab CI)
+# que se integrará con un repositorio GitLab mediante el plugin de GitLab.
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins-devops-lab
+    restart: unless-stopped
+    ports:
+      - "8080:8080"   # Interfaz web de Jenkins
+      - "50000:50000" # Puerto para agentes Jenkins remotos (no usado en esta práctica, pero se deja expuesto)
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      # Permite que Jenkins use el Docker del host para levantar agentes Maven efímeros (Semana 2, paso opcional)
+      #- /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=true
+
+volumes:
+  jenkins_home:
+    driver: local
