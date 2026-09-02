@@ -14,8 +14,7 @@ services:
       - "50000:50000" # Puerto para agentes Jenkins remotos (no usado en esta práctica, pero se deja expuesto)
     volumes:
       - jenkins_home:/var/jenkins_home
-      # Permite que Jenkins use el Docker del host para levantar agentes Maven efímeros (Semana 2, paso opcional)
-      #- /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=true
 
